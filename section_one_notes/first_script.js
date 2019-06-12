@@ -1,0 +1,1 @@
+console.log("\nWelcome to the class!\n")
