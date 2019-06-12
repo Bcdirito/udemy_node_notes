@@ -33,3 +33,12 @@
 
 const notes = require("./notes.js")
 console.log(notes())
+
+// Part 3:
+// Initializing npm in a project -> npm init
+// To import npm package -> require("packageName")
+const validator = require("validator")
+
+console.log(validator.isEmail(".com"))
+
+console.log(validator.isURL("https/mead.io"))
