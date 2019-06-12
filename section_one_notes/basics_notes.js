@@ -7,3 +7,8 @@
 // process -> global object equivalent to document in browser
 
 // To exit -> process.exit()
+
+// Part 2:
+
+// Non-blocking I/O -> Runs asynchronously
+
