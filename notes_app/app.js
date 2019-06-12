@@ -31,14 +31,27 @@
 // 3. Expore getNotes function
 // 4. From app.js, load in and call function
 
-const notes = require("./notes.js")
-console.log(notes())
+// const notes = require("./notes.js")
+// console.log(notes())
 
 // Part 3:
 // Initializing npm in a project -> npm init
 // To import npm package -> require("packageName")
-const validator = require("validator")
+// const validator = require("validator")
 
-console.log(validator.isEmail(".com"))
+// console.log(validator.isEmail(".com"))
 
-console.log(validator.isURL("https/mead.io"))
+// console.log(validator.isURL("https/mead.io"))
+
+// Part 4:
+// Challenge
+// 1. Install chalk
+// 2. Import chalk in
+// 3. Print "Success!" in green
+// 4. Test to make sure it works
+// Bonus: Make text bold and inversed
+
+const chalk = require("chalk")
+console.log(chalk.green.bold("Success!"))
+console.log(chalk.green.inverse("Success!"))
+console.log(chalk.green.underline("Success!"))
