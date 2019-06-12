@@ -54,4 +54,12 @@
 const chalk = require("chalk")
 console.log(chalk.green.bold("Success!"))
 console.log(chalk.green.inverse("Success!"))
-console.log(chalk.green.underline("Success!"))
+console.log(chalk.red.underline("Error!"))
+
+// Part 5:
+// Global NPM packages
+// Local NPM found in pacakge.json
+// To install globally -> npm install packageName -g
+// To install as administrator -> sudo npm install
+// To start running without reload -> nodemon
+// Terminate with ctrl+c
