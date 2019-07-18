@@ -52,9 +52,9 @@
 // Bonus: Make text bold and inversed
 
 const chalk = require("chalk")
-console.log(chalk.green.bold("Success!"))
-console.log(chalk.green.inverse("Success!"))
-console.log(chalk.red.underline("Error!"))
+// console.log(chalk.green.bold("Success!"))
+// console.log(chalk.green.inverse("Success!"))
+// console.log(chalk.red.underline("Error!"))
 
 // Part 5:
 // Global NPM packages
@@ -63,3 +63,75 @@ console.log(chalk.red.underline("Error!"))
 // To install as administrator -> sudo npm install
 // To start running without reload -> nodemon
 // Terminate with ctrl+c
+
+const getNotes = require("./notes.js")
+
+// const msg = getNotes()
+// console.log(msg)
+
+// const greeting = chalk.blue.inverse.bold("Success!")
+
+// console.log(greeting)
+
+
+// const command = process.argv[2]
+
+// if (command === 'add') console.log("Adding Note!")
+// else if (command === "remove") console.log("Removing Note!")
+
+// parsing package
+const yargs = require("yargs")
+
+// Customize yargs version
+yargs.version("1.1.0")
+
+// Create add command
+yargs.command({
+    command: "add",
+    describe: "Add a new note",
+    builder: {
+        title: {
+            describe: "Note title",
+            demandOption: true,
+            type: "string"
+        },
+        body: {
+            describe: "Note body",
+            demandOption: true,
+            type: "string"
+        }
+    },
+    handler: function (argv) {
+        console.log(`Title: ${argv.title}`)
+        console.log(`Body: ${argv.body}`)
+    }
+})
+
+yargs.command({
+    command: "remove",
+    describe: "Remove a note",
+    handler: function () {
+        console.log("Removing the note")
+    }
+})
+
+yargs.command({
+    command: "read",
+    describe: "Reading the note",
+    handler: function() {
+        console.log("Reading the note!")
+    }
+})
+
+yargs.command({
+    command: "list",
+    describe: "Listing all notes",
+    handler: function () {
+        console.log("Listing the notes!")
+    }
+})
+
+// Line 129 and 131 do the same job
+yargs.parse()
+
+// console.log(yargs.argv)
