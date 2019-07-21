@@ -64,7 +64,7 @@ const chalk = require("chalk")
 // To start running without reload -> nodemon
 // Terminate with ctrl+c
 
-const getNotes = require("./notes.js")
+const notes = require("./notes.js")
 
 // const msg = getNotes()
 // console.log(msg)
@@ -102,8 +102,7 @@ yargs.command({
         }
     },
     handler: function (argv) {
-        console.log(`Title: ${argv.title}`)
-        console.log(`Body: ${argv.body}`)
+        notes.addNote(argv.title, argv.body)
     }
 })
 
