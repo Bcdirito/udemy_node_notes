@@ -5,6 +5,10 @@ const addNote = (ttl, bdy) => {
     const notes = loadNotes()
     
     const duplicateNote = notes.find(note => note.title === ttl)
+    
+    // debugger
+    // node inspect
+    // chrome://inspect
 
     if (!duplicateNote) {
         notes.push({
