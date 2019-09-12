@@ -1,21 +1,8 @@
-console.log("Starting")
+const request = require("request")
 
-// Will happen last
-setTimeout(() => {
-    console.log("2 Second Timer")
-}, 2000)
+const currentLocationURL = "https://api.darksky.net/forecast/a20071b704e2a45e50f3d9ece9208ca0/37.8267,-122.4233"
 
-setTimeout(() => {
-    console.log("0 Second Timer")
-}, 0)
-
-console.log("Stopping")
-
-// Order:
-// Starting
-// Stopping
-// 0 Second Timer
-// 2 Second Timer
-
-// setTimeout won't run until the call stack is empty.
-// This is because it is part of the Callback Queue
+request({url: currentLocationURL }, (error, res) => {
+    const data = JSON.parse(res.body)
+    console.log(data.currently)
+})
