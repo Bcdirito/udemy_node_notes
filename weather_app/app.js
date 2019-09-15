@@ -1,5 +1,6 @@
-const request = require("request")
 const geocode = require("./utils/geocode")
+const forecast = require("./utils/forecast")
+
 
 // const currentLocationURL = "https://api.darksky.net/forecast/a20071b704e2a45e50f3d9ece9208ca0/37.8267,-122.4233"
 
@@ -23,28 +24,22 @@ const geocode = require("./utils/geocode")
 //     else console.log(res.body.daily.data[0].summary)
 // })
 
-// Geocoding
-// Address -> Lat/Long
-
-
-// Print Lat/Long for LA
-// request({url: geocodeURL, json: true}, (error, res) => {
-//     if (error) console.log("Unable to connect to Location Services!")
-//     else {
-//         const resBod = res.body
-//         if (resBod.message || (resBod.features === undefined || resBod.features.length === 0)) console.log(resBod.message)
-//         else {
-//             const latitude = resBod.features[0].center[1]
-//             const longitude = resBod.features[0].center[0]
-//             console.log(latitude, longitude)
-//         }
-//     }
-// })
-
-
-
-
 geocode("New York", (error, data) => {
     if (error) console.log(error)
     else console.log(data)
+})
+
+//
+// Goal: Create a reusable function for getting the forecast
+//
+// 1. Setup the "forecast" function in utils/forecast.js
+// 2. Require the function in app.js and call it as shown below
+// 3. The forecast function should have three potential calls to callback:
+//    - Low level error, pass string for error
+//    - Coordinate error, pass string for error
+//    - Success, pass forecast string for data (same format as from before)
+
+forecast(-75.7088, 44.1545, (error, data) => {
+    if (error) console.log(error)
+    else console.log(`\n${data}`)
 })
