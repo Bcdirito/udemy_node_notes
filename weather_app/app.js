@@ -6,14 +6,20 @@ const geocodeURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Ange
 
 // Print current forecast in Celsius
 request({url: currentLocationURL, json: true }, (error, res) => {
-    const currentData = res.body.currently
-    console.log(`It is currently ${currentData.temperature} degrees out. There is a ${currentData.precipProbability}% chance of rain.`)
+    if (error) console.log("Unable to connect to weather service!")
+    else if (res.body.error) console.log(res.body.error)
+    else {
+        const currentData = res.body.currently
+        console.log(`It is currently ${currentData.temperature} degrees out. There is a ${currentData.precipProbability}% chance of rain.`)
+    }
 })
 
 // Print forecast for today
 
 request({url: currentLocationURL, json: true}, (error, res) => {
-    console.log(res.body.daily.data[0].summary)
+    if (error) console.log("Unable to connect to weather service!")
+    else if (res.body.error) console.log(res..body.error)
+    else console.log(res.body.daily.data[0].summary)
 })
 
 // Geocoding
@@ -22,11 +28,15 @@ request({url: currentLocationURL, json: true}, (error, res) => {
 
 // Print Lat/Long for LA
 request({url: geocodeURL, json: true}, (error, res) => {
-    if (error) console.log(error)
+    if (error) console.log("Unable to connect to Location Services!")
     else {
-        const latitude = res.body.features[0].center[1]
-        const longitude = res.body.features[0].center[0]
-        console.log(latitude, longitude)
+        const resBod = res.body
+        if (resBod.message || (resBod.features === undefined || resBod.features.length === 0)) console.log(resBod.message)
+        else {
+            const latitude = resBod.features[0].center[1]
+            const longitude = resBod.features[0].center[0]
+            console.log(latitude, longitude)
+        }
     }
 })
 
