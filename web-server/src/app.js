@@ -17,6 +17,18 @@ hbs.registerPartials(partialsPath)
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 
+app.listen(3000, () => {
+    console.log("Server is up on port 3000")
+})
+
+app.get("", (req, res) => {
+    res.render("index", {
+        title: "Weather",
+        name: "Brian DiRito"
+    })
+})
+
+
 app.get("/weather", (req, res) => {
     res.send({
         forecast: "72 degress",
@@ -39,14 +51,18 @@ app.get("/help", (req, res) => {
     })
 })
 
-app.get("", (req, res) => {
-    res.render("index", {
-        title: "Weather",
+app.get("/help/*", (req, res) => {
+    res.render("error", {
+        message: "Help article not found",
         name: "Brian DiRito"
     })
 })
 
-app.listen(3000, () => {
-    console.log("Server is up on port 3000")
+// Always needs to come last
+app.get("*", (req, res) => {
+    res.render("error", {
+        message: "Page not found.",
+        name: "Brian DiRito"
+    })
 })
 
