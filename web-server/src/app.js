@@ -53,6 +53,7 @@ app.get("/help", (req, res) => {
 
 app.get("/help/*", (req, res) => {
     res.render("error", {
+        title: "Help 404",
         message: "Help article not found",
         name: "Brian DiRito"
     })
@@ -61,6 +62,7 @@ app.get("/help/*", (req, res) => {
 // Always needs to come last
 app.get("*", (req, res) => {
     res.render("error", {
+        title: "404",
         message: "Page not found.",
         name: "Brian DiRito"
     })
