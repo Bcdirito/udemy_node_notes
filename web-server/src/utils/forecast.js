@@ -5,10 +5,10 @@ const forecast = (lat, lon, callback) => {
     request({url: url, json: true}, (error, {body}) => {
         if (error) callback("Could Not Connect to API", undefined)
         else {
-            const {error, currently} = body
+            const {error, currently, daily} = body
             if (error) callback(error, undefined)
             else {
-                callback(undefined, `It is currently ${currently.temperature} degrees out. There is a ${currently.precipProbability}% chance of rain.`)
+                callback(undefined, `It is currently ${currently.temperature} degrees out. There is a ${currently.precipProbability}% chance of rain. The high is ${daily.data[0].temperatureHigh} and the low is ${daily.data[0].temperatureLow}.`)
             }
         }
     })
