@@ -1,13 +1,27 @@
+const messageType = document.getElementById("messageType")
+const messageContent = document.getElementById("messageContent")
+const weatherForm = document.getElementById("weatherForm")
+
 const getWeatherData = (address) => { 
     fetch(`http://localhost:3000/weather?address=${address}`)
     .then(res => res.json())
     .then(json => {
-        if (json.error) console.log(json.error)
-        else console.log(json.location, json.forecast)
+        if (json.error) renderError(json.error)
+        else renderMessages(json.location, json.forecast)
     })
 }
 
-document.getElementById("weatherForm").addEventListener("submit", (e) => {
+const renderError = (message) => {
+    messageType.innerText = message
+    messageContent.innerText = ""
+}
+
+const renderMessages = (location, forecast) => {
+    messageType.innerText = location
+    messageContent.innerText = forecast
+}
+
+weatherForm.addEventListener("submit", (e) => {
     e.preventDefault()
     getWeatherData(encodeURI(e.target.location.value))
     e.target.location.value = ""
